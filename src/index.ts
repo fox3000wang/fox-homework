@@ -1,18 +1,21 @@
 require('./css/reset.css');
 require('./css/main.css');
-//import LazyImage from './LazyImage';
-const LazyImage = require('./LazyImage');
 
-let waterfallModule = (function () {
-  // 获取需要操作的DOM元素
-  let container = document.querySelector('.container'),
-    columns = container.querySelectorAll('.column'),
-    loadMore = document.querySelector('.loadMore'),
-    observe = null;
-  columns = Array.from(columns);
+import LazyImage from './LazyImage';
+
+class WaterfallModule {
+  //获取需要操作的DOM元素
+  private container = document.querySelector('.container');
+  private columns = Array.from(this.container.querySelectorAll('.column'));
+  private loadMore = document.querySelector('.loadMore');
+  private observe = null;
+  
+  constructor(){
+
+  }
 
   // 基于AJAX从服务器端获取数据
-  const queryData = () => {
+  queryData = () => {
     return new Promise(resolve => {
       let xhr = new XMLHttpRequest();
       xhr.open('GET', './data.json');
@@ -25,9 +28,9 @@ let waterfallModule = (function () {
       xhr.send(null);
     });
   };
-
+  
   // 页面中的数据绑定
-  const bindHTML = data => {
+  bindHTML = data => {
     data = data.map(item => {
       let AW = 230,
         BW = item.width,
@@ -40,7 +43,7 @@ let waterfallModule = (function () {
     for (let i = 0; i < data.length; i += 3) {
       let group = data.slice(i, i + 3);
       group.sort((a, b) => a.height - b.height);
-      columns.sort((a, b) => b.offsetHeight - a.offsetHeight);
+      this.columns.sort((a, b) => b.offsetHeight - a.offsetHeight);
       group.forEach((item, index) => {
         let card = document.createElement('div');
         card.className = 'card';
@@ -50,13 +53,13 @@ let waterfallModule = (function () {
                     </div>
                     <p>${item.title}</p>
                 </a>`;
-        columns[index].appendChild(card);
+        this.columns[index].appendChild(card);
       });
     }
   };
 
   // 加载更多数据
-  const loadMoreFunc = () => {
+  loadMoreFunc = () => {
     // 创建监听器
     let oboptions = {
       threshold: [0],
@@ -65,23 +68,24 @@ let waterfallModule = (function () {
       let item = changes[0];
       if (item.isIntersecting) {
         // 加载更多数据
-        let data = await queryData();
-        bindHTML(data);
-        observe.refresh();
+        let data = await this.queryData();
+        this.bindHTML(data);
+        this.observe.refresh();
       }
     }, oboptions);
-    ob.observe(loadMore);
+    ob.observe(this.loadMore);
   };
 
-  return {
-    async init() {
-      let data = await queryData();
-      bindHTML(data);
-      observe = LazyImage({
-        threshold: 0.5,
-      });
-      loadMoreFunc();
-    },
-  };
-})();
-waterfallModule.init();
+  async init() {
+    
+    let data = await this.queryData();
+    this.bindHTML(data);
+    this.observe = new LazyImage({
+      threshold: 0.5,
+    });
+    this.loadMoreFunc();
+  }
+
+}
+
+new WaterfallModule().init();

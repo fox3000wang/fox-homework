@@ -13,7 +13,7 @@ function assetsPath(_path) {
 
 module.exports = {
   mode: 'development',
-  entry: { index: './src/index.js' },
+  entry: { index: './src/index.ts' },
   devtool: 'eval-source-map',
   output: {
     filename: '[name].[hash:8].js',
@@ -26,8 +26,29 @@ module.exports = {
     hot: true,
     contentBase: [path.resolve(__dirname, 'static'), resolve('mockData')],
   },
+  resolve: {
+    extensions: ['.js', '.tsx', '.ts', '.json', '.html'],
+  },
   module: {
     rules: [
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: true,
+            },
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
+      },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -66,11 +87,6 @@ module.exports = {
         ],
         include: [resolve('src')],
       },
-      // {
-      //   test: /\.css$/,
-      //   use: ['style-loader', 'css-loader'],
-      //   include: /node_modules/,
-      // },
     ],
   },
   plugins: [
