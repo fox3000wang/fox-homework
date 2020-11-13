@@ -13,11 +13,11 @@ function assetsPath(_path) {
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: { index: './src/index.js' },
   devtool: 'eval-source-map',
 
   output: {
-    filename: 'index.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
 
@@ -25,13 +25,12 @@ module.exports = {
     port: 8888,
     open: true,
     compress: true,
-    contentBase: [path.resolve(__dirname, 'static'), resolve('mockData')],
-
     hot: true,
+    contentBase: [path.resolve(__dirname, 'static'), resolve('mockData')],
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
 
   module: {
@@ -79,29 +78,16 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\\.css$/,
         use: [
-          'style-loader',
+          { loader: 'style-loader' },
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
               modules: true,
-              camelCase: true,
-              localIdentName: '[name]_[local]_[hash:base64:5]',
             },
           },
         ],
-        include: [resolve('src')],
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-        include: /node_modules/,
-      },
-      {
-        test: /\.(md|json)$/,
-        use: 'raw-loader',
       },
     ],
   },
@@ -116,12 +102,5 @@ module.exports = {
         minifyJS: true,
       },
     }),
-
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: path.resolve(__dirname, 'src/images/*'),
-    //     to: path.resolve(__dirname, 'static'),
-    //   },
-    // ]),
   ],
 };

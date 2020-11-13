@@ -1,3 +1,5 @@
+//import LazyImage from './LazyImage';
+const LazyImage = require('./LazyImage');
 let waterfallModule = (function () {
   // 获取需要操作的DOM元素
   let container = document.querySelector('.container'),
@@ -79,5 +81,4 @@ let waterfallModule = (function () {
     },
   };
 })();
-console.log('waterfallModule.init()');
 waterfallModule.init();
