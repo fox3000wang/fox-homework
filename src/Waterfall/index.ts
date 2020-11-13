@@ -2,10 +2,14 @@ import LazyImage from '../LazyImage';
 
 class Waterfall {
   //获取需要操作的DOM元素
-  private container = document.querySelector('.container');
-  private columns = Array.from(this.container.querySelectorAll('.column'));
-  private loadMore = document.querySelector('.loadMore');
+  private columns;
+  private loadMore;
   private observe = null;
+
+  constructor(options:any){
+    this.columns = Array.from(options.columns);
+    this.loadMore = options.loadMore;
+  }
   
   // 基于AJAX从服务器端获取数据
   queryData = () => {
