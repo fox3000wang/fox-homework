@@ -71,7 +71,6 @@ class Waterfall {
     let ob = new IntersectionObserver(async changes => {
       let item = changes[0];
       if (item.isIntersecting) {
-        // 加载更多数据
         let data = await this.queryData();
         this.bindHTML(data);
         this.observe.refresh();
