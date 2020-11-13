@@ -8,5 +8,5 @@ require('./css/main.css');
  */
 const root = document.getElementById('root');
 
-page03(root, 4);
+page03(root, 3  );
 

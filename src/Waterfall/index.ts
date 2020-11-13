@@ -1,6 +1,6 @@
 
 class Waterfall {
-  //获取需要操作的DOM元素
+  
   private columns:Array<any>;
   private loadMore;
   private loader;
@@ -16,7 +16,8 @@ class Waterfall {
   queryData = () => {
     return new Promise(resolve => {
       let xhr = new XMLHttpRequest();
-      xhr.open('GET', './data.json');
+      // xhr.open('GET', './data.json');
+      xhr.open('GET', './data03.json');
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
           let data = JSON.parse(xhr.responseText);
@@ -51,9 +52,15 @@ class Waterfall {
       group.forEach((item, index) => {
         let card = document.createElement('div');
         card.className = 'card';
+        // card.innerHTML = `<a href="${item.link}">
+        //             <div class="lazyImageBox" style="height: ${item.height}px;">
+        //                 <img src="" alt="" lazy-image="${item.pic}">
+        //             </div>
+        //             <p>${item.title}</p>
+        //         </a>`;
         card.innerHTML = `<a href="${item.link}">
                     <div class="lazyImageBox" style="height: ${item.height}px;">
-                        <img src="" alt="" lazy-image="${item.pic}">
+                        <img src="" alt="" lazy-image="${item.picUrl}">
                     </div>
                     <p>${item.title}</p>
                 </a>`;
