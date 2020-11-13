@@ -1,5 +1,8 @@
+require('./css/reset.css');
+require('./css/main.css');
 //import LazyImage from './LazyImage';
 const LazyImage = require('./LazyImage');
+
 let waterfallModule = (function () {
   // 获取需要操作的DOM元素
   let container = document.querySelector('.container'),

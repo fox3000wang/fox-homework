@@ -1,7 +1,7 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -15,12 +15,10 @@ module.exports = {
   mode: 'development',
   entry: { index: './src/index.js' },
   devtool: 'eval-source-map',
-
   output: {
-    filename: '[name].js',
+    filename: '[name].[hash:8].js',
     path: path.resolve(__dirname, 'dist'),
   },
-
   devServer: {
     port: 8888,
     open: true,
@@ -28,31 +26,8 @@ module.exports = {
     hot: true,
     contentBase: [path.resolve(__dirname, 'static'), resolve('mockData')],
   },
-
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
-  },
-
   module: {
     rules: [
-      {
-        test: /\.ts(x?)$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              babelrc: true,
-            },
-          },
-          {
-            loader: 'ts-loader',
-            options: {
-              transpileOnly: true,
-            },
-          },
-        ],
-      },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -62,36 +37,42 @@ module.exports = {
         },
       },
       {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 1000,
-          name: assetsPath('media/[name].[hash:7].[ext]'),
-        },
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 1000,
-          name: assetsPath('fonts/[name].[hash:7].[ext]'),
-        },
-      },
-      {
-        test: /\\.css$/,
+        test: /\.css$/,
         use: [
-          { loader: 'style-loader' },
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: true,
+            },
+          },
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: {
+                compileType: 'module',
+                mode: 'local',
+                auto: true,
+                exportGlobals: true,
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                localIdentContext: path.resolve(__dirname, 'src'),
+                localIdentHashPrefix: 'my-custom-hash',
+                namedExport: true,
+                exportLocalsConvention: 'camelCase',
+                exportOnlyLocals: false,
+              },
             },
           },
+          // 'postcss-loader',
         ],
+        include: [resolve('src')],
       },
+      // {
+      //   test: /\.css$/,
+      //   use: ['style-loader', 'css-loader'],
+      //   include: /node_modules/,
+      // },
     ],
   },
-
   plugins: [
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
@@ -102,5 +83,9 @@ module.exports = {
         minifyJS: true,
       },
     }),
+    new MiniCssExtractPlugin({
+      filename: 'css/main.css',
+    }),
+    new CleanWebpackPlugin(),
   ],
 };
