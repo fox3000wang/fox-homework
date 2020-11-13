@@ -1,14 +1,15 @@
-import LazyImage from '../LazyImage';
 
 class Waterfall {
   //获取需要操作的DOM元素
   private columns;
   private loadMore;
-  private observe = null;
+  private loader;
+  private observe;
 
-  constructor(options:any){
+  constructor(options:any, loader:any){
     this.columns = Array.from(options.columns);
     this.loadMore = options.loadMore;
+    this.loader = loader ? loader : null;
   }
   
   // 基于AJAX从服务器端获取数据
@@ -76,9 +77,11 @@ class Waterfall {
   async init() {    
     let data = await this.queryData();
     this.bindHTML(data);
-    this.observe = new LazyImage({
-      threshold: 0.5,
-    });
+    if(this.loader){
+      this.observe = new this.loader({
+        threshold: 0.5,
+      });
+    }
     this.loadMoreFunc();
   }
 

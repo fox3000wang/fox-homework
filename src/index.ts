@@ -8,4 +8,4 @@ const container = document.querySelector('.container');
 const columns = container.querySelectorAll('.column');
 const loadMore = document.querySelector('.loadMore');
 
-new Waterfall({columns,loadMore}).init();
+new Waterfall({columns,loadMore}, LazyImage).init();
