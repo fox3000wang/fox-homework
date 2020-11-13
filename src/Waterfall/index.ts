@@ -1,7 +1,7 @@
 
 class Waterfall {
   //获取需要操作的DOM元素
-  private columns;
+  private columns:Array<any>;
   private loadMore;
   private loader;
   private observe;
@@ -29,6 +29,7 @@ class Waterfall {
   
   // 页面中的数据绑定
   bindHTML = data => {
+    
     data = data.map(item => {
       let AW = 230,
         BW = item.width,
@@ -38,10 +39,15 @@ class Waterfall {
       item.height = AH;
       return item;
     });
-    for (let i = 0; i < data.length; i += 3) {
-      let group = data.slice(i, i + 3);
+
+    //for (let i = 0; i < data.length; i += 3) {
+    const length = this.columns.length;
+    for (let i = 0; i < data.length; i += length) {
+      let group = data.slice(i, i + length);
+      
       group.sort((a, b) => a.height - b.height);
       this.columns.sort((a, b) => b.offsetHeight - a.offsetHeight);
+      
       group.forEach((item, index) => {
         let card = document.createElement('div');
         card.className = 'card';
