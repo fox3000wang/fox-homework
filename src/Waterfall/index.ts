@@ -15,9 +15,9 @@ class Waterfall {
   // 基于AJAX从服务器端获取数据
   queryData = () => {
     return new Promise(resolve => {
-      let xhr = new XMLHttpRequest();
-      // xhr.open('GET', './data.json');
-      xhr.open('GET', './data03.json');
+      let xhr = new XMLHttpRequest();      
+      //xhr.open('GET', './data.json');
+      xhr.open('GET', Math.random() > 0.5 ? './data03.json' : 'data.json');
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
           let data = JSON.parse(xhr.responseText);
@@ -60,7 +60,7 @@ class Waterfall {
         //         </a>`;
         card.innerHTML = `<a href="${item.link}">
                     <div class="lazyImageBox" style="height: ${item.height}px;">
-                        <img src="" alt="" lazy-image="${item.picUrl}">
+                        <img src="" alt="" lazy-image="${item.pic}">
                     </div>
                     <p>${item.title}</p>
                 </a>`;
