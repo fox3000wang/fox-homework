@@ -9,7 +9,17 @@ require('./css/main.css');
  */
 const root = document.getElementById('root');
 
+const page03div:HTMLElement = document.getElementById('page03');
 
-//page03(root, 3);
+const page08div:HTMLElement = document.getElementById('page08');
 
-page08(root);
+
+page03div.addEventListener('click',()=>{
+  page03(root, 3);
+})
+page08div.addEventListener('click',()=>{
+  page08(root);
+})
+
+
+page03(root,4);

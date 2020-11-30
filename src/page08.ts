@@ -1,6 +1,5 @@
 
-
-export default function page08(root){
+export default function page08(root:HTMLElement){
 
   const smallPic = 'http://img10.360buyimg.com/n1/s450x450_jfs/t1/132022/23/12216/60913/5f86195bEacd08599/c5dc348d3f943324.jpg';
   const bigPic = 'http://img10.360buyimg.com//n0/jfs/t1/132022/23/12216/60913/5f86195bEacd08599/c5dc348d3f943324.jpg';
@@ -20,14 +19,14 @@ export default function page08(root){
   ;
   root.innerHTML = html;
 
-  window.onload = function (){
+  //window.onload = function():void{
 
-    const abbre = document.getElementsByClassName('abbre')[0];
-    const mark = document.getElementsByClassName('mark')[0];
-    const originDiv = document.getElementsByClassName('origin')[0];
-    const originImg = document.getElementsByClassName('originImg')[0];
+    const abbre:HTMLElement = document.getElementsByClassName('abbre')[0] as HTMLElement;
+    const mark:HTMLElement = document.getElementsByClassName('mark')[0] as HTMLElement;;
+    const originDiv:HTMLElement = document.getElementsByClassName('origin')[0] as HTMLElement;;
+    const originImg:HTMLElement = document.getElementsByClassName('originImg')[0] as HTMLElement;
 			
-    function computed(ev) {
+    function computed(ev:MouseEvent) {
       let abbreW = abbre.clientWidth,
       abbreH = abbre.clientHeight,
       markW = mark.clientWidth,
@@ -50,8 +49,6 @@ export default function page08(root){
         maxT = abbreH - markH;
       markL = markL < minL ? minL : (markL > maxL ? maxL : markL);
       markT = markT < minT ? minT : (markT > maxT ? maxT : markT);
-      
-      console.log(`${markL} ${abbreW} ${originImgW}`);
 
       let originImgL = -markL / abbreW * originImgW;
       let originImgT = -markT / abbreH * originImgH;
@@ -62,17 +59,16 @@ export default function page08(root){
       originImg.style.top= `${originImgT}px`;
     }
 
-    
     abbre.addEventListener('mousemove', computed);
-    abbre.addEventListener('mouseenter',  ev => {
+    abbre.addEventListener('mouseenter',  (ev:MouseEvent) => {
         mark.style.display = 'block';
         originDiv.style.display = 'block';
         computed(ev);
     });
-    abbre.addEventListener('mouseleave', ev => {
+    abbre.addEventListener('mouseleave', (ev:MouseEvent) => {
         mark.style.display = 'none';
         originDiv.style.display =  'none';
     });
   }
 
-}
+//}
