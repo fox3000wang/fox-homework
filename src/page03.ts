@@ -6,7 +6,7 @@ import Waterfall from './Waterfall';
  * @param root 瀑布流的根节点
  * @param page 瀑布流的数量
  */
-export default function page03(root:any, page:number){
+export default function page03(root:HTMLElement, page:number):void{
 
   page = !page ? 3 : page; 
 

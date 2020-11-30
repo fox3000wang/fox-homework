@@ -1,3 +1,4 @@
+import Magnifier from './Magnifier';
 
 export default function page08(root:HTMLElement){
 
@@ -19,56 +20,11 @@ export default function page08(root:HTMLElement){
   ;
   root.innerHTML = html;
 
-  //window.onload = function():void{
+  const abbre:HTMLElement = document.getElementsByClassName('abbre')[0] as HTMLElement;
+  const mark:HTMLElement = document.getElementsByClassName('mark')[0] as HTMLElement;;
+  const originDiv:HTMLElement = document.getElementsByClassName('origin')[0] as HTMLElement;;
+  const originImg:HTMLElement = document.getElementsByClassName('originImg')[0] as HTMLElement;
 
-    const abbre:HTMLElement = document.getElementsByClassName('abbre')[0] as HTMLElement;
-    const mark:HTMLElement = document.getElementsByClassName('mark')[0] as HTMLElement;;
-    const originDiv:HTMLElement = document.getElementsByClassName('origin')[0] as HTMLElement;;
-    const originImg:HTMLElement = document.getElementsByClassName('originImg')[0] as HTMLElement;
-			
-    function computed(ev:MouseEvent) {
-      let abbreW = abbre.clientWidth,
-      abbreH = abbre.clientHeight,
-      markW = mark.clientWidth,
-      markH = mark.clientHeight,
-      originW = originDiv.clientWidth,
-      originH = originDiv.clientHeight;
-
-      let originImgW = originW / (markW / abbreW);
-      let originImgH = originH / (markH / abbreH);
-      originImg.style.width = `${originImgW}px`;
-      originImg.style.height = `${originImgH}px`;
-
-      // 计算MARK的位置以及根据MARK的移动计算出大图的移动距离
-      let markT = ev.pageY - abbre.offsetTop - markH / 2;
-      let markL = ev.pageX - abbre.offsetLeft - markW / 2;
-      
-      // 边界判断
-      let minL = 0, minT = 0,
-        maxL = abbreW - markW,
-        maxT = abbreH - markH;
-      markL = markL < minL ? minL : (markL > maxL ? maxL : markL);
-      markT = markT < minT ? minT : (markT > maxT ? maxT : markT);
-
-      let originImgL = -markL / abbreW * originImgW;
-      let originImgT = -markT / abbreH * originImgH;
-
-      mark.style.left = `${markL}px`;
-      mark.style.top = `${markT}px`;
-      originImg.style.left= `${originImgL}px`;
-      originImg.style.top= `${originImgT}px`;
-    }
-
-    abbre.addEventListener('mousemove', computed);
-    abbre.addEventListener('mouseenter',  (ev:MouseEvent) => {
-        mark.style.display = 'block';
-        originDiv.style.display = 'block';
-        computed(ev);
-    });
-    abbre.addEventListener('mouseleave', (ev:MouseEvent) => {
-        mark.style.display = 'none';
-        originDiv.style.display =  'none';
-    });
-  }
-
-//}
+  const magnifier:Magnifier = new Magnifier();
+  magnifier.registered(abbre, mark, originDiv, originImg);
+}
