@@ -29,8 +29,7 @@ body {
 }
 
 .card a .lazyImageBox {
-	/* height: xxx;  如果是需要进行图片延迟加载，在图片不显示的时候，我们要让盒子的高度等于图片的高度，这样才能把盒子撑开（服务器返回给我们的数据中，一定要包含图片的高度和宽度） */
-	background: url("../images/default.gif") no-repeat center center #F4F4F4;
+	background: url("../assets/images/default.gif") no-repeat center center #F4F4F4;
 	overflow: hidden;
 }
 

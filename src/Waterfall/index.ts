@@ -15,9 +15,8 @@ class Waterfall {
   // 基于AJAX从服务器端获取数据
   queryData = () => {
     return new Promise(resolve => {
-      let xhr = new XMLHttpRequest();      
-      //xhr.open('GET', './data.json');
-      xhr.open('GET', Math.random() > 0.5 ? './data03.json' : 'data.json');
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', './data.json');
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
           let data = JSON.parse(xhr.responseText);
