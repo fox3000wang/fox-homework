@@ -30,7 +30,8 @@ export default function page01(root:HTMLElement):void{
     </div>
     <div id="loginPage" class="login-close">
         <div id="loginTitle" class="login-title">拖动我可以挪动</div>
-        
+        <br>
+        <div></div>
     </div>
   `;
   root.innerHTML = html;
