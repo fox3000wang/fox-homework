@@ -31,6 +31,7 @@ function renderTree(data, root) {
       let node = document.createElement('div');
       node.innerHTML = '-';
       node.className = 'node';
+      node.addEventListener('click', clickHandler);
       father.appendChild(node);
 
       renderTree(value, father);
@@ -47,15 +48,11 @@ function renderTree(data, root) {
 let tree = renderTree(data);
 root.appendChild(tree);
 
-let node1 = document.getElementById('node1');
-let father1 = document.getElementById('father1');
-
 function clickHandler(e) {
   let target = e.target;
-  console.log(target);
 
-  if (target.innerHTML === '+') {
-    target.innerHTML = '-';
+  if (target.innerHTML === '-') {
+    target.innerHTML = '+';
     let parent = target.parentElement;
     let children = parent.getElementsByClassName('child');
 
@@ -63,9 +60,10 @@ function clickHandler(e) {
       children[0].className = 'child-hide';
     }
   } else {
-    target.innerHTML = '+';
+    target.innerHTML = '-';
     let parent = e.target.parentElement;
     let children = parent.getElementsByClassName('child-hide');
+
     while (children.length > 0) {
       children[0].className = 'child';
     }
