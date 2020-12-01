@@ -29,7 +29,8 @@ export default function page01(root:HTMLElement):void{
         <div id="bottom"></div>
     </div>
     <div id="loginPage" class="login-close">
-        <div id="loginTitle" class="login-title"></div>
+        <div id="loginTitle" class="login-title">拖动我可以挪动</div>
+        
     </div>
   `;
   root.innerHTML = html;

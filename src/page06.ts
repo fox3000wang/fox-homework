@@ -1,4 +1,3 @@
-let root = document.getElementById('root');
 
 const data = {
   a: 'a',
@@ -7,7 +6,7 @@ const data = {
     b2: 'b2',
     b3: 'b3',
     c: {
-      c: 'ccc',
+      c: 'ccc+',
       x: {
         y: 'y',
       },
@@ -16,7 +15,13 @@ const data = {
   d: 'd',
 };
 
-function renderTree(data, root) {
+export default function page06(root:HTMLElement){
+  root.innerHTML = '';
+  let tree = renderTree(data);
+  root.appendChild(tree);
+}
+
+function renderTree(data:Object, root?:HTMLElement) {
   if (!root) {
     root = document.createElement('div');
   }
@@ -45,11 +50,8 @@ function renderTree(data, root) {
   return root;
 }
 
-let tree = renderTree(data);
-root.appendChild(tree);
-
-function clickHandler(e) {
-  let target = e.target;
+function clickHandler(e:MouseEvent) {
+  let target:HTMLElement = e.target as HTMLElement;
 
   if (target.innerHTML === '-') {
     target.innerHTML = '+';
@@ -61,7 +63,7 @@ function clickHandler(e) {
     }
   } else {
     target.innerHTML = '-';
-    let parent = e.target.parentElement;
+    let parent = target.parentElement;
     let children = parent.getElementsByClassName('child-hide');
 
     while (children.length > 0) {
