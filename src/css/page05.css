@@ -6,31 +6,38 @@
 }
 .navigation{
   display: flex;
-  background-color: bisque;
+  background-color: #FFF;
   height: 100px;
   width: 100%;
   z-index: 100;
 }
 .item{
-  background-color: red;
-  height: 80px;
-  width: 150px;
+  background-color:#FFF;
+  height: 100px;
+  width: 100px;
   margin: auto;
-  line-height: 80px;
+  line-height: 100px;
   text-align: center;
   cursor: pointer;
 }
 .detail{
-  /* display:block; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
   position: absolute;
-  background-color: seagreen;
+  background-color: #FFF;
   height: 200px;
-  top:100px;
+  width: 100%;
+  left: 0;
   overflow: hidden;
+  border: 1px solid #000;
 }
 .pic{
-  /* margin: auto; */
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.picTxt{
+  height: 50px;
 }
