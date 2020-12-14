@@ -1,0 +1,36 @@
+.bg5{
+  background-image: url("https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0eef3ba233adf8540be11d4e7d5d88e1.jpg?w=2452&h=920");
+  width: 100%;
+  height: 300px;
+  z-index: -1;
+}
+.navigation{
+  display: flex;
+  background-color: bisque;
+  height: 100px;
+  width: 100%;
+  z-index: 100;
+}
+.item{
+  background-color: red;
+  height: 80px;
+  width: 150px;
+  margin: auto;
+  line-height: 80px;
+  text-align: center;
+  cursor: pointer;
+}
+.detail{
+  /* display:block; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  background-color: seagreen;
+  height: 200px;
+  top:100px;
+  overflow: hidden;
+}
+.pic{
+  /* margin: auto; */
+}

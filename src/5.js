@@ -1,4 +1,5 @@
-//
+// mock data
+
 const xiaomi = document.getElementById('xiaomi');
 const detail = document.getElementById('detail');
 
