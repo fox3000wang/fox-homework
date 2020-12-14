@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  
+
+  <style>
+    .{
+      margin: 0;
+      padding: 0;
+    }
+    .bg{
+      background-image: url("https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0eef3ba233adf8540be11d4e7d5d88e1.jpg?w=2452&h=920");
+      width: 100%;
+      height: 300px;
+      z-index: -1;
+    }
+    .navigation{
+      display: flex;
+      background-color: bisque;
+      height: 100px;
+      width: 100%;
+      z-index: 100;
+    }
+    .item{
+      background-color: red;
+      height: 80px;
+      width: 150px;
+      margin: auto;
+      line-height: 80px;
+      text-align: center;
+    }
+    .detail{
+      /* display:block; */
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: absolute;
+      background-color: seagreen;
+      height: 200px;
+      top:100px;
+      overflow: hidden;
+    }
+    .pic{
+      /* margin: auto; */
+    }
+    /* #pic1{
+      width: 100px;
+      height: 100px;
+      background-image: url("https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&q=90");
+    } */
+  </style>
+
+</head>
+<body>
+  
+  <div class="navigation">
+    <div class="item" id="xiaomi">小米手机</div>
+    <div class="item" id="hongmi">红米手机</div>
+    <div class="item">小米手机</div>
+    <div class="item">小米手机</div>
+    <div class="item">小米手机</div>
+    <div class="item">小米手机</div>
+  </div>
+  <div class="detail" id="detail">
+
+    <div class="pic" id="pic1"> 
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&q=90">
+    </div>
+    <div class="pic"> 
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a4a76ee684e51f0ee531ef3dc7f0aeaf.png?thumb=1&w=160&h=110&f=webp&q=90">
+    </div>
+    <div class="pic">   
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90">
+    </div>
+    <div class="pic"> 
+      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5d19da60f9f62eb2aa5dcdbd7df19f0f.png?thumb=1&w=160&h=110&f=webp&q=90">
+    </div>
+
+  </div>
+  <div class="bg"></div>
+</body>
+<script src='5.js'></script>
+</html>

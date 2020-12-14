@@ -11,14 +11,14 @@ export default function page08(root:HTMLElement){
 
   const html = `
   <section class="magnifier clearfix">
-  <div class="abbre">
-    <img src="${smallPic}">
-    <div class="mark"></div>
-  </div>
-  <div class="origin">
-    <img class="originImg" src="${bigPic}">
-  </div>
-  </section>
+    <div class="abbre">
+      <img src="${smallPic}">
+      <div class="mark"></div>
+    </div>
+    <div class="origin">
+      <img class="originImg" src="${bigPic}">
+    </div>
+    </section>
   <script src="jquery.min.js"></script>
   `
   ;

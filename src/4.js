@@ -9,8 +9,11 @@ for (let i = 0; i < 6; i++) {
 box.innerHTML = html;
 
 let pic = document.getElementsByName('item');
+for (let i = 0; i < 6; i++) {
+  pic[i].addEventListener('click', clickHandler);
+}
 
-pic[3].addEventListener('click', function (e) {
+function clickHandler(e) {
   console.log(e.target.clientWidth);
   e.target.className = e.target.className.replace('short', 'long');
-});
+}

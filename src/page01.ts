@@ -34,6 +34,7 @@ export default function page01(root:HTMLElement):void{
         <div></div>
     </div>
   `;
+
   root.innerHTML = html;
 
   const login:HTMLElement = document.getElementById('login');
