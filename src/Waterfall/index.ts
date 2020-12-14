@@ -12,7 +12,8 @@ class Waterfall {
     this.loader = loader ? loader : null;
   }
   
-  // 基于AJAX从服务器端获取数据
+  // TODO:抽离到业务层
+  // 基于AJAX从服务器端获取数据 
   queryData = () => {
     return new Promise(resolve => {
       let xhr = new XMLHttpRequest();
@@ -40,7 +41,6 @@ class Waterfall {
       return item;
     });
 
-    //for (let i = 0; i < data.length; i += 3) {
     const length = this.columns.length;
     for (let i = 0; i < data.length; i += length) {
       let group = data.slice(i, i + length);

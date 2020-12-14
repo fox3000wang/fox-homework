@@ -1,0 +1,36 @@
+.small{
+  display: flex;
+  width: 500px;
+  height: 50px;
+}
+
+.smallItem{
+  border: 1px solid #000;
+  width: 50px;
+  height: 50px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.smallPic{
+  width: 49px;
+  height: 49px;
+}
+
+.big{
+  display: flex;
+  width: 500px;
+  height: 500px;
+}
+
+.bigItem{
+  border: 1px solid #000;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.bigPic{
+  width: 200px;
+  height: 200px;
+}
