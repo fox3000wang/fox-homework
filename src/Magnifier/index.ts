@@ -1,4 +1,7 @@
 
+/**
+ * 放大镜效果
+ */
 export default class Magnifier {
 
   private abbre:HTMLElement;
@@ -64,9 +67,9 @@ export default class Magnifier {
     let markL = ev.pageX - this.abbre.offsetLeft - markW / 2;
     
     // 边界判断
-    let minL = 0, minT = 0,
-      maxL = abbreW - markW,
-      maxT = abbreH - markH;
+    let minL = 0, minT = 0;
+    let maxL = abbreW - markW;
+    let maxT = abbreH - markH;
     markL = markL < minL ? minL : (markL > maxL ? maxL : markL);
     markT = markT < minT ? minT : (markT > maxT ? maxT : markT);
 

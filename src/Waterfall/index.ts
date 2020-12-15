@@ -74,6 +74,7 @@ class Waterfall {
     let oboptions = {
       threshold: [0],
     };
+    // https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver
     let ob = new IntersectionObserver(async changes => {
       let item = changes[0];
       if (item.isIntersecting) {
