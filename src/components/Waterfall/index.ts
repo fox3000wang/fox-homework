@@ -24,6 +24,7 @@ export class Waterfall {
   }
   
   // 页面中的数据绑定 TODO: 构建ui的逻辑也要剥离到外面
+  // 但是ui的展现里面也涉及逻辑, 暂时没有好办法分离
   bindHTML = data => {
     
     data = data.map(item => {
@@ -74,7 +75,7 @@ export class Waterfall {
       if (item.isIntersecting) {
         let data = await this.queryData();
         this.bindHTML(data);
-        this.observe.refresh();
+        this.observe.refresh(); // 新数据到位后, dom也改变了, 懒加载器需要刷新一下
       }
     }, oboptions);
     ob.observe(this.loadMore);

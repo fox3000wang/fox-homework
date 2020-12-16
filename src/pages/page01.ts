@@ -1,3 +1,5 @@
+import {throttle} from '../utils';
+
 /**
  * 百度登录框拖拽效果
  * @param root 
@@ -75,16 +77,17 @@ export default function page01(root:HTMLElement):void{
       mouseX = e.clientX;
       mouseY = e.clientY;
       console.log(`x=${mouseX} y=${mouseY}`);
-      box.parentElement.addEventListener('mousemove', MouseMoveHandler);
+      box.parentElement.addEventListener('mousemove', throttle(MouseMoveHandler, 100));
     });
 
     const MouseMoveHandler = (e:MouseEvent) => {
-      let offsetX = e.clientX - mouseX;
-      let offsetY = e.clientY - mouseY;
-      box.style.left = parseInt(box.style.left) + offsetX + 'px';
-      box.style.top = parseInt(box.style.top) + offsetY + 'px';
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+        console.log('MouseMoveHandler');
+        let offsetX = e.clientX - mouseX;
+        let offsetY = e.clientY - mouseY;
+        box.style.left = parseInt(box.style.left) + offsetX + 'px';
+        box.style.top = parseInt(box.style.top) + offsetY + 'px';
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     }
 
     box.parentElement.addEventListener('mouseup', e => {

@@ -1,15 +1,20 @@
 
-export function throttle(func:Function, wait:number) {
+/**
+ * 截流
+ * @param func
+ * @param wait 
+ */
+export function throttle(func:Function, wait?:number) {
   if (typeof func !== 'function') {
     throw new TypeError('func must be an function!');
   }
-  wait = !wait ? 500 : wait; //如果传0进来，等于不截流
+  wait = !wait ? 300 : wait; //如果传0进来，等于不截流
 
-  let timer:number;
+  let timer:NodeJS.Timeout;
   let previous:Date;
 
   return function proxy(...params) {
-    const self = this;
+    const self:any = this;
     const now:Date = new Date();
     const remaining = wait - (now - previous);
 
