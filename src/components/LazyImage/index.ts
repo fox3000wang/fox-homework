@@ -16,7 +16,6 @@ export class LazyImage {
       callback: Function.prototype,
     };
     this.init(Object.assign(defaults, options));
-
   }
 
   init(config:any) {

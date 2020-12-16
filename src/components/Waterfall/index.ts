@@ -1,4 +1,4 @@
-
+import { queryData } from '../../common/queryData'; // <- TODO: 这个要改成传参!!
 export class Waterfall {
   
   private columns:Array<any>;
@@ -12,23 +12,7 @@ export class Waterfall {
     this.loader = loader ? loader : null;
   }
   
-  // TODO:抽离到业务层
-  // 基于AJAX从服务器端获取数据 
-  queryData = () => {
-    return new Promise(resolve => {
-      let xhr = new XMLHttpRequest();
-      xhr.open('GET', './data.json');
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
-          let data = JSON.parse(xhr.responseText);
-          resolve(data);
-        }
-      };
-      xhr.send(null);
-    });
-  };
-  
-  // 页面中的数据绑定
+  // 页面中的数据绑定 TODO: 构建ui的逻辑也要剥离到外面
   bindHTML = data => {
     
     data = data.map(item => {
@@ -51,12 +35,6 @@ export class Waterfall {
       group.forEach((item, index) => {
         let card = document.createElement('div');
         card.className = 'card';
-        // card.innerHTML = `<a href="${item.link}">
-        //             <div class="lazyImageBox" style="height: ${item.height}px;">
-        //                 <img src="" alt="" lazy-image="${item.pic}">
-        //             </div>
-        //             <p>${item.title}</p>
-        //         </a>`;
         card.innerHTML = `<a href="${item.link}">
                     <div class="lazyImageBox" style="height: ${item.height}px;">
                         <img src="" alt="" lazy-image="${item.pic}">
@@ -78,7 +56,7 @@ export class Waterfall {
     let ob = new IntersectionObserver(async changes => {
       let item = changes[0];
       if (item.isIntersecting) {
-        let data = await this.queryData();
+        let data = await queryData();
         this.bindHTML(data);
         this.observe.refresh();
       }
@@ -87,7 +65,7 @@ export class Waterfall {
   };
 
   async init() {    
-    let data = await this.queryData();
+    let data = await queryData();
     this.bindHTML(data);
     if(this.loader){
       this.observe = new this.loader({
