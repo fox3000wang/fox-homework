@@ -1,4 +1,4 @@
-import {throttle} from '../utils';
+import {throttle} from '../utils/throttle';
 
 /**
  * 百度登录框拖拽效果
