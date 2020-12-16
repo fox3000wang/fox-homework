@@ -1,5 +1,7 @@
-import { LazyImage } from '../components';
 import { Waterfall } from '../components';
+import { queryData } from '../common/queryData';
+import { LazyImageLoader } from '../components';
+
 
 /**
  * 瀑布流效果
@@ -22,9 +24,10 @@ export default function page03(root:HTMLElement, page:number = 3):void{
   root.innerHTML = html;
 
   const container = document.querySelector('.container');
-  const columns = container.querySelectorAll('.column');
-  const loadMore = document.querySelector('.loadMore');
+  const columns:Array<HTMLElement> = container.querySelectorAll('.column');
+  const loadMore:HTMLElement = document.querySelector('.loadMore');
 
-  new Waterfall({columns,loadMore}, LazyImage).init();
+  
+  new Waterfall({columns,loadMore,queryData}, LazyImageLoader ).init();
 
 }

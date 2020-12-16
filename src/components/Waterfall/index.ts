@@ -1,15 +1,26 @@
-import { queryData } from '../../common/queryData'; // <- TODO: 这个要改成传参!!
+
+export interface IWaterfall {
+  columns : Array<HTMLElement>;
+  queryData : Function;
+  loadMore : HTMLElement;
+}
+
+/**
+ * 瀑布流
+ */
 export class Waterfall {
   
   private columns:Array<any>;
-  private loadMore;
-  private loader;
-  private observe;
+  private loadMore:HTMLElement;
+  private queryData:Function;
+  private loader:any;
+  private observe:any;
 
-  constructor(options:any, loader:any){
+  constructor(options:IWaterfall, loader:any){
     this.columns = Array.from(options.columns);
+    this.queryData = options.queryData;
     this.loadMore = options.loadMore;
-    this.loader = loader ? loader : null;
+    this.loader = loader;
   }
   
   // 页面中的数据绑定 TODO: 构建ui的逻辑也要剥离到外面
@@ -46,7 +57,12 @@ export class Waterfall {
     }
   };
 
-  // 加载更多数据
+  /* 
+    加载更多数据
+    这里还是还是利用IntersectionObserver,监听loadMore这个元素
+    如果滚动条滚到底部,这个元素露头了, 就调用queryData()再去服务器上拉新的数据,
+    然后把新的dom的元素自己加载在loadMore的上面
+  */
   loadMoreFunc = () => {
     // 创建监听器
     let oboptions = {
@@ -56,7 +72,7 @@ export class Waterfall {
     let ob = new IntersectionObserver(async changes => {
       let item = changes[0];
       if (item.isIntersecting) {
-        let data = await queryData();
+        let data = await this.queryData();
         this.bindHTML(data);
         this.observe.refresh();
       }
@@ -65,7 +81,7 @@ export class Waterfall {
   };
 
   async init() {    
-    let data = await queryData();
+    let data = await this.queryData();
     this.bindHTML(data);
     if(this.loader){
       this.observe = new this.loader({
