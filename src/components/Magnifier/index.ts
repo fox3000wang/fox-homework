@@ -2,7 +2,7 @@
 /**
  * 放大镜效果
  */
-export default class Magnifier {
+export class Magnifier {
 
   private abbre:HTMLElement;
   private mark:HTMLElement;

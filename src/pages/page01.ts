@@ -1,9 +1,12 @@
-
 /**
  * 百度登录框拖拽效果
  * @param root 
  */
 export default function page01(root:HTMLElement):void{
+
+  if(!root){
+    throw Error('root must not be null');
+  }
 
   const html = `
     <div id="mask" class="mask-close"></div>

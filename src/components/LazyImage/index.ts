@@ -1,4 +1,4 @@
-class LazyImage {
+export class LazyImage {
 
   private config:any;
   private imageBoxList:Array<any>;
@@ -73,5 +73,3 @@ class LazyImage {
   }
   
 }
-
-export default LazyImage;

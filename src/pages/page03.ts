@@ -1,5 +1,5 @@
-import LazyImage from './LazyImage';
-import Waterfall from './Waterfall';
+import { LazyImage } from '../components';
+import { Waterfall } from '../components';
 
 /**
  * 瀑布流效果

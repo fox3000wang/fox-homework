@@ -1,19 +1,25 @@
 // <- vscode 这里提示警告, 不知道为什么
 
-import page01 from './page01';
-import page02 from './page02';
-import page03 from './page03';
-import page05 from './page05';
-import page06 from './page06';
-import page08 from './page08';
+import page01 from './pages/page01';
+import page02 from './pages/page02';
+import page03 from './pages/page03';
+import page05 from './pages/page05';
+import page06 from './pages/page06';
+import page08 from './pages/page08';
 
 require('./css/reset.css');
 require('./css/main.css');
 require('./css/page01.css');
 require('./css/page02.css');
-require('./css/page06.css');
+require('./css/page03.css');
+require('./css/page04.css');
 require('./css/page05.css');
+require('./css/page06.css');
+require('./css/page07.css');
 require('./css/page08.css');
+require('./css/page09.css');
+require('./css/page10.css');
+require('./css/page11.css');
 
 /**
  * 整个项目的入口，这里只负责切换页面，不负责任何业务逻辑

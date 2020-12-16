@@ -1,5 +1,5 @@
 
-function throttle(func:Function, wait:number) {
+export function throttle(func:Function, wait:number) {
   if (typeof func !== 'function') {
     throw new TypeError('func must be an function!');
   }
@@ -28,5 +28,3 @@ function throttle(func:Function, wait:number) {
     }
   };
 }
-
-export default throttle;

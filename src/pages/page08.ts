@@ -1,10 +1,14 @@
-import Magnifier from './Magnifier';
+import { Magnifier } from '../components';
 
 /**
  * 百度放大镜效果
  * @param root 
  */
 export default function page08(root:HTMLElement){
+
+  if(!root){
+    throw Error('root must not be null');
+  }
 
   const smallPic = 'http://img10.360buyimg.com/n1/s450x450_jfs/t1/132022/23/12216/60913/5f86195bEacd08599/c5dc348d3f943324.jpg';
   const bigPic = 'http://img10.360buyimg.com//n0/jfs/t1/132022/23/12216/60913/5f86195bEacd08599/c5dc348d3f943324.jpg';

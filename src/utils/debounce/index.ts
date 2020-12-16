@@ -1,4 +1,4 @@
-function debounce(func:Function, wait:number, immediate:boolean) {
+export function debounce(func:Function, wait:number, immediate:boolean) {
 
   if (typeof func !== 'function') {
     throw new TypeError('func must be an function!');
@@ -27,5 +27,3 @@ function debounce(func:Function, wait:number, immediate:boolean) {
     now ? func.call(self, ...params) : null;
   };
 }
-
-export default debounce;

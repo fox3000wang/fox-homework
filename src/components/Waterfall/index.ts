@@ -1,5 +1,5 @@
 
-class Waterfall {
+export class Waterfall {
   
   private columns:Array<any>;
   private loadMore;
@@ -98,5 +98,3 @@ class Waterfall {
   }
 
 }
-
-export default Waterfall;

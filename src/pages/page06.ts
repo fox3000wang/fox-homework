@@ -16,6 +16,11 @@ const data = {
 };
 
 export default function page06(root:HTMLElement){
+
+  if(!root){
+    throw Error('root must not be null');
+  }
+  
   root.innerHTML = '';
   let tree = renderTree(data);
   root.appendChild(tree);
