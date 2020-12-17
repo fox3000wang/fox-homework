@@ -123,8 +123,7 @@ export class Carousel3D{
 
     const one = () => {  
       for (i = 0; i < aLi.length; i++) {
-        console.log(aLi[i].style.width);
-        
+        // 这里也会由于精度达不到,所以也要取舍
         //if (aLi[i].style.width === '344px') {
         if (parseFloat(aLi[i].style.width) >= 340) {
           let oDiv = aLi[i].getElementsByTagName('div')[0];
@@ -136,26 +135,26 @@ export class Carousel3D{
     one();
 
     // 自动翻页
-    // let oSmall = this.getClass(oTop, 'small')[0];
-    // const autoLoop = () => {
-    //   oSmall.onmouseover = oBut.onmouseover = e => {
-    //     clearInterval(timer);
-    //   };
-    //   oSmall.onmouseout = oBut.onmouseout = e => {
-    //     clearInterval(timer);
-    //     timer = setInterval(setInter, 5000);
-    //   };
-    //   timer = setInterval(setInter, 5000);
+    let oSmall = this.getClass(oTop, 'small')[0];
+    const autoLoop = () => {
+      oSmall.onmouseover = oBut.onmouseover = e => {
+        clearInterval(timer);
+      };
+      oSmall.onmouseout = oBut.onmouseout = e => {
+        clearInterval(timer);
+        timer = setInterval(setInter, 5000);
+      };
+      timer = setInterval(setInter, 5000);
   
-    //   function setInter() {
-    //     iNow++;
-    //     if (iNow > aLi.length - 1) {
-    //       iNow = 0;
-    //     }
-    //     tab();
-    //   }
-    // }
-    //autoLoop();
+      function setInter() {
+        iNow++;
+        if (iNow > aLi.length - 1) {
+          iNow = 0;
+        }
+        tab();
+      }
+    }
+    autoLoop();
   }
 
   getClass = (oParent, sClass) => {
@@ -187,7 +186,7 @@ export class Carousel3D{
   
     obj.timer = setInterval(() => {
       this.doMove(obj, json, fnEnd);
-    }, 50);
+    }, 30);
   }
   
   getStyle = (obj, attr) => {
