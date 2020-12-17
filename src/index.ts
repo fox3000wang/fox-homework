@@ -34,6 +34,9 @@ for(let i = 1; i < 11; i++){
   const div = document.createElement('div');
   btn.appendChild(div);
 
-  div.innerHTML = `page${i}`;
-  div.addEventListener('click', ()=>funs[i](root));
+  if(funs[i]){
+    div.innerHTML = `page${i}`;
+    div.addEventListener('click', ()=>funs[i](root));
+  }
+  
 }
