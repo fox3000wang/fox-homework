@@ -1,4 +1,3 @@
-import {throttle} from '../utils/throttle';
 
 /**
  * 百度登录框拖拽效果
@@ -50,7 +49,7 @@ export default function page01(root:HTMLElement):void{
   login.onclick = loginHandler;
 
   function loginHandler() {
-    console.log('[loginHandler] ');
+    //console.log('[loginHandler]');
 
     mask.className = 'mask-popup'; // 通过ccs来实现弹出遮罩窗的效果
     loginPage.className = 'login-popup';
@@ -77,7 +76,7 @@ export default function page01(root:HTMLElement):void{
       mouseX = e.clientX;
       mouseY = e.clientY;
       console.log(`x=${mouseX} y=${mouseY}`);
-      box.parentElement.addEventListener('mousemove', throttle(MouseMoveHandler, 100));
+      box.parentElement.addEventListener('mousemove', MouseMoveHandler);
     });
 
     const MouseMoveHandler = (e:MouseEvent) => {
