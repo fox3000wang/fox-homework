@@ -6,6 +6,7 @@ import page03 from './pages/page03';
 import page05 from './pages/page05';
 import page06 from './pages/page06';
 import page08 from './pages/page08';
+import page10 from './pages/page10';
 
 require('./css/reset.css');
 require('./css/main.css');
@@ -27,7 +28,7 @@ require('./css/page11.css');
 const root = document.getElementById('root');
 const btn = document.getElementById('btn');
 
-const funs:Array<Function> = [null,page01,page02,page03,null,page05,page06,null,page08];
+const funs:Array<Function> = [null,page01,page02,page03,null,page05,page06,null,page08,null,page10];
 
 for(let i = 1; i < 11; i++){
   const div = document.createElement('div');

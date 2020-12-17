@@ -8,7 +8,7 @@ import { LazyImageLoader } from '../components';
  * @param root 瀑布流的根节点
  * @param page 瀑布流的数量
  */
-export default function page03(root:HTMLElement, page:number = 3):void{
+export default function page03(root:HTMLElement, page?:number):void{
 
   if(!root){
     throw Error('root must not be null');

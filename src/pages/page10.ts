@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html>
- <head> 
-  <meta charset="utf-8" /> 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-  <title>Page Title</title> 
-  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-  <link rel="stylesheet" type="text/css" media="screen" href="css/page10.css" /> 
- </head> 
- <body> 
+import { Carousel3D } from '../components/Carousel3D';
+
+/**
+ * 3D轮播图
+ * @param root 
+ */
+export default function page10(root:HTMLElement):void{
+
+  if(!root){
+    throw Error('root must not be null');
+  }
+
+  root.innerHTML = `
   <div id="top">
    <div class="small"> 
     <ul> 
@@ -28,16 +31,7 @@
    <div id="list"> 
     <ul> 
      <li style="width: 110px; height: 140px; top: 172px; left: 708px; z-index: 2;" class=""> <img src="./01(1).jpg" /> 
-      <div style="opacity: 0.75;"></div> 
-      <p class="b_tit" style="bottom: -120px;">
-        <span class="opacity"></span> 
-        <span class="tit">
-          <span>蒙其&middot;D&middot;路飞<em>&nbsp;&nbsp;&nbsp;&nbsp;草帽海贼团【船长】</em>
-          </span> 
-          <em>恶魔果实：橡胶果实<br />悬赏：3千万（可可亚西村事件）→1亿（阿拉巴斯坦事件）→3亿（司法岛事件)→4亿（顶上战争后）</em> 
-        </span> 
-      </p>
-      </li> 
+      <div style="opacity: 0.75;"></div> <p class="b_tit" style="bottom: -120px;"> <span class="opacity"></span> <span class="tit"> <span>蒙其&middot;D&middot;路飞<em>&nbsp;&nbsp;&nbsp;&nbsp;草帽海贼团【船长】</em></span> <em>恶魔果实：橡胶果实<br />悬赏：3千万（可可亚西村事件）→1亿（阿拉巴斯坦事件）→3亿（司法岛事件)→4亿（顶上战争后）</em> </span> </p> </li> 
      <li style="width: 140px; height: 180px; top: 132px; left: 770px; z-index: 4;" class=""> <img src="./02(1).jpg" /> 
       <div style="opacity: 0.75;"></div> <p class="b_tit" style="bottom: -120px;"> <span class="opacity"></span> <span class="tit"> <span>罗罗诺亚&middot;索隆<em>&nbsp;&nbsp;&nbsp;&nbsp;草帽海贼团【剑士】</em></span> <em>悬赏：6千万（阿拉巴斯坦事件）→1亿2000万（司法岛事件）</em> </span> </p> </li> 
      <li style="width: 204px; height: 260px; top: 92px; left: 844px; z-index: 6;" class=""> <img src="./03(1).jpg" /> 
@@ -59,6 +53,8 @@
     <a href="javascript:;" class="next"></a> 
    </div> 
   </div>
- </body>
- <script src="10.js"></script> 
-</html>
+  `;
+
+  new Carousel3D();
+
+}
