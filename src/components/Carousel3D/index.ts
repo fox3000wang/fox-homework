@@ -1,9 +1,20 @@
 /**
  * 3D轮播图组件
+ * 
+ * 核心原理：
+ *    其实就是一张图片, 长(w),宽(h),x,y,遮罩不透明度(o), 都是数值。
+ *    1.图片有一个原始的固定位置，然后有运动后的目标位置。
+ *      比如: w 20->40 h 30->60 x 0->20 y 0->20 o 40->100
+ *    2.根据动画的播放时间,算下来,每30毫秒的运动速度 speed
+ *    3.然后开一个定时器,每间隔30毫秒,把图片的当前属性和目标属性比较
+ *      如果不相等,则把当前的图片属性的数值加上speed
+ *      如果全部都相等了，则动画播放完毕，关闭定时器。
+ *    4.然后画面上9张图片一起播放动画，就可以达到这个效果
+ *    5.设计得比较好的一点就是通过数值来驱动画面的变化。
  */
 export class Carousel3D{
 
-  private aPosition:object = [
+  private position:object = [
     { width: 344, height: 440, top: 0, left: 352, zIndex: 10 },
     { width: 260, height: 332, top: 56, left: 148, zIndex: 8 },
     { width: 204, height: 260, top: 92, left: 0, zIndex: 6 },
@@ -26,7 +37,7 @@ export class Carousel3D{
     let i = 0;
     let iNow = 0;
 
-    let timer:any = null;
+    
     let aSort:any = [];
 
     // 初始化小图标部分
@@ -50,12 +61,12 @@ export class Carousel3D{
     // 初始化大图
     for (i = 0; i < aLi.length; i++) {
       aLi[i].index = i;
-      aLi[i].style.width = this.aPosition[i].width + 'px';
-      aLi[i].style.height = this.aPosition[i].height + 'px';
-      aLi[i].style.top = this.aPosition[i].top + 'px';
-      aLi[i].style.left = this.aPosition[i].left + 'px';
-      aLi[i].style.zIndex = this.aPosition[i].zIndex;
-      aSort[i] = this.aPosition[i];
+      aLi[i].style.width = this.position[i].width + 'px';
+      aLi[i].style.height = this.position[i].height + 'px';
+      aLi[i].style.top = this.position[i].top + 'px';
+      aLi[i].style.left = this.position[i].left + 'px';
+      aLi[i].style.zIndex = this.position[i].zIndex;
+      aSort[i] = this.position[i];
 
       this.myAddEvent(aLi[i], 'mouseover', (e:MouseEvent) => {
         let element:HTMLElement = e.currentTarget as HTMLElement;
@@ -71,7 +82,8 @@ export class Carousel3D{
         if(li.localName === 'li'){
           div = li.getElementsByTagName('div')[0];
         }
-        if (li.style.width === '344px') {
+        // if (li.style.width === '344px') {
+        if(iNow === li.index){
           this.startMove(div, { opacity: 0 });
         } else {
           this.startMove(div, { opacity: 75 });
@@ -106,7 +118,7 @@ export class Carousel3D{
 
     const sort = () => {
       for (i = 0; i < aLi.length; i++) {
-        aSort[i] = this.aPosition[i];
+        aSort[i] = this.position[i];
       }
     }
 
@@ -135,6 +147,7 @@ export class Carousel3D{
     one();
 
     // 自动翻页
+    let timer:any = null;
     let oSmall = this.getClass(oTop, 'small')[0];
     const autoLoop = () => {
       oSmall.onmouseover = oBut.onmouseover = e => {
@@ -195,12 +208,16 @@ export class Carousel3D{
       : getComputedStyle(obj, false)[attr];
   }
   
+  /**
+   * 整个动画播放的核心
+   * @param obj
+   * @param json 
+   * @param fnEnd 
+   */
   doMove = (obj, json, fnEnd) => {
     let iCur = 0;
     let attr = '';
     let bStop = true;
-
-    //console.log(`${obj.localName} ${JSON.stringify(json)}`);
   
     for (attr in json) {
       attr === 'opacity'
@@ -215,6 +232,7 @@ export class Carousel3D{
       } else {
         iSpeed = (json[attr] - iCur) / 5;
       }
+      
       iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
   
       // if(obj.index == 0){
@@ -240,9 +258,7 @@ export class Carousel3D{
     if (bStop) {
       clearInterval(obj.timer);
       obj.timer = null;
-      if (fnEnd){
-        fnEnd();
-      } 
+      fnEnd && fnEnd();
     }
   }
 

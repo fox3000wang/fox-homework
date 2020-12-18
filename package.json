@@ -10,10 +10,6 @@
     "publish": "npm run build && rsync -av build/dist/ ubuntu@qq:/var/www/html/zf && rsync -av mockData/ ubuntu@qq:/var/www/html/zf",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fox3000wang/fox-utils.git"
-  },
   "author": "fox1000wang@gmail.com",
   "license": "MIT",
   "bugs": {
